@@ -26,12 +26,13 @@ class UserTest {
     @Test
     @DisplayName("the login is not equal to the email")
     public void shouldCheckThatLoginIsNotEqualToEmail() {
-        Assertions.assertNotEquals(userTest.getLogin(), userTest.getEmail());
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new User(CORRECT_EMAIL, LOGIN_EQUALS_EMAIL));
     }
 
     @Test
     @DisplayName("checking that the user is not null")
     public void shouldCheckUserIsNotEmpty() {
-        Assertions.assertNotNull(emptyUserTest);
+        Assertions.assertNull(emptyUserTest.getEmail());
+        Assertions.assertNull(emptyUserTest.getLogin());
     }
 }
